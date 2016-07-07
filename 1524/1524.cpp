@@ -1,4 +1,4 @@
-//Utilizando programação dinâmica, baseado no exemplo 4 (Wedding Shopping)
+//Using DP. Based on the Wedding Shopping problem.
 
 #include <iostream>
 #include <cmath>
