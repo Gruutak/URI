@@ -1,4 +1,4 @@
-#include <iostream>
+#include <cstdio>
 #include <queue>
 #include <list>
 
@@ -12,7 +12,6 @@ using namespace std;
 
 int cor[MAXN];
 list<int> componente;
-int dist[MAXN], pred[MAXN];
 
 void BFS(int graph[MAXN][MAXN], int raiz, int N) {
     int i;
@@ -20,8 +19,6 @@ void BFS(int graph[MAXN][MAXN], int raiz, int N) {
 	int atual;
 
 	cor[raiz] = CINZA;
-	dist[raiz] = 0;
-	pred[raiz] = -1;
 
 	fila.push(raiz);
 	componente.push_back(raiz);
@@ -37,8 +34,6 @@ void BFS(int graph[MAXN][MAXN], int raiz, int N) {
 						cor[i] = CINZA;
 						fila.push(i);
 						componente.push_back(i);
-						dist[i] = dist[atual]+1;
-						pred[i] = atual;
 					}
 				}
 			}
@@ -52,35 +47,30 @@ int main(int argc, char** argv) {
 	char x,y;
 	int N, M, C, i, j, k, u, v;
 	int graph[MAXN][MAXN];
-	int flag = -1, cont = 0;
+	int cont = 0;
 	list<int>::iterator it;
 
-	cin >> C;
+	scanf("%d", &C);
 
 	for (k=0; k < C;k++){
-		cin >> N;
-		cin >> M;
+		scanf("%d %d", &N, &M);
 
 		for (i=0; i < N; i++)
 			for (j=0; j < N; j++)
 				graph[i][j] = 0;
 
 		for (i=0; i < M; i++){
-			cin >> x;
-			cin >> y;
+			scanf(" %c", &x);
+	        scanf(" %c", &y);
 			u = x - 'a';
 			v = y - 'a';
 			graph[u][v] = graph[v][u] = 1;
 		}
 
-		for (i = 0; i < N; i++) {
-			dist[i] = -1;
-			pred[i] = -1;
-			cor[i] = BRANCO;
-		}
+		for (i = 0; i < N; i++) cor[i] = BRANCO;
 
 		cont = 0;
-		cout << "Case #" << k+1 << ":" << endl;
+		printf("Case #%d:\n", k+1);
 		for(i = 0; i < N; i++) {
 			if(cor[i] == BRANCO) {
 				componente.clear();
@@ -90,10 +80,10 @@ int main(int argc, char** argv) {
 				componente.sort();
 
 				for (it = componente.begin(); it != componente.end(); ++it)
-	    			cout << (char)(*it + 'a') << ',';
-				cout << endl;
+	    			printf("%c,", *it + 'a');
+				printf("\n");
 			}
 		}
-		cout << cont << " connected components" << endl << endl;
+		printf("%d connected components\n\n", cont);
 	}
 }
