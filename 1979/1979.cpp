@@ -56,6 +56,7 @@ int main(int argc, char** argv) {
 			while (token != NULL){
 				j = atoi(token);
 				graph[i-1][j-1] = 1;
+				graph[j-1][i-1] = 1;
 				token = strtok(NULL," ");
 			}
 		}
