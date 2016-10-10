@@ -38,9 +38,9 @@ int main(){
 		for (i = 0; i < M; i++) {
 			scanf("%d %d %d", &V, &W, &P);
 
+			graph[V-1][W-1] = 1;
 			if (P == 2)
 				graph[W-1][V-1] = 1;
-			graph[V-1][W-1] = 1;
 		}
 
 		//debug
